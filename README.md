@@ -20,7 +20,7 @@ where $\mathbb{1}$ is the indicator function, equal to 1 when the corresponding 
 
 For each descriptor, the matcher identifies its nearest neighbour (the descriptor with the smallest Hamming distance). Cross-checking is then applied to retain only pairs where both descriptors are each other's nearest neighbours, reducing ambiguous matches.
 
-The following visualisation shows the 50 best descriptor matches between the first two frames of a driving sequence, with coloured lines connecting corresponding keypoints.
+The following visualization shows the 50 best descriptor matches between the first two frames of a driving sequence, with coloured lines connecting corresponding keypoints.
 
 ![ORB feature matching](results/orb_matches.png)
 
