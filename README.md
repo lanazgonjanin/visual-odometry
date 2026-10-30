@@ -1,4 +1,4 @@
-# Visual Odometry
+# Parallax: Monocular Visual Odometry for Autonomous Driving
 
 ## Feature Detection and Matching
 
