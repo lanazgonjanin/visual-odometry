@@ -1,5 +1,9 @@
 # Parallax: Monocular Visual Odometry for Autonomous Driving
 
+Parallax is a Python-based monocular visual odometry system that estimates camera motion and reconstructs vehicle trajectories from sequences of images. Using classical computer vision techniques, including feature detection and matching, epipolar geometry, and robust motion estimation, the system tracks changes in camera position and orientation without relying on GPS.
+
+Developed using OpenCV and evaluated on the KITTI Visual Odometry dataset, the project explores the accuracy, computational efficiency, and limitations of vision-based localisation for autonomous driving applications.
+
 ## Feature Detection and Matching
 
 ### ORB Keypoint Detection
