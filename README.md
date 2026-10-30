@@ -28,6 +28,27 @@ The following visualization shows the 50 best descriptor matches between the fir
 
 ![ORB feature matching](results/orb_matches.png)
 
+### Essential Matrix Estimation
+
+ORB feature matching is not necessarily correct: two different image features might have similar-looking descriptors, causing the matcher to pair them incorrectly. To mitigate this, we estimate an essential matrix to describe the geometric relationship between two camera views, letting us identify matches consistent with the geometry of camera motion. For a feature detected in the first image, the essential matrix predicts an epipolar line in the second image. If the feature match is geometrically correct, its corresponding point in the second image should lie on or very close to that line. 
+
+The essential matrix is estimated using RANSAC (Random Sample Consensus). RANSAC estimates the essential matrix by repeatedly sampling subsets of feature correspondences and evaluating how well the resulting models explain the remaining matches. Matches consistent with the estimated geometry are classified as *inliers*, while inconsistent matches are classified as *outliers*. A geometric error threshold of 1 pixel is used to distinguish inliers from outliers, allowing for small inaccuracies in feature localisation.
+
+Using the first two frames of the same driving sequence, the implementation produced the following results:
+
+| Metric | Result |
+|---|---|
+| Total ORB matches | 1,221 |
+| RANSAC inliers | 868 |
+| RANSAC outliers | 353 |
+| Inlier ratio | 71.09% |
+
+The following visualization shows a subset of feature correspondences classified as inliers and outliers by RANSAC.
+
+![RANSAC inlier and outlier matches](results/ransac_matches.png)
+
+Some visually correct feature correspondences may still be classified as outliers because RANSAC evaluates their consistency with the estimated epipolar geometry rather than their visual similarity. Small inaccuracies in feature localization can cause a correct match to exceed the 1-pixel geometric error threshold and be rejected.
+
 ## Dataset
 
 This project uses the [KITTI Visual Odometry Dataset](https://www.cvlibs.net/datasets/kitti/eval_odometry.php) to develop and evaluate camera-based vehicle localization algorithms.
